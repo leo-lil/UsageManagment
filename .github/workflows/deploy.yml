@@ -21,4 +21,4 @@ jobs:
           aws_region: $AWS_REGION
           cluster_name: $EKS_CLUSTER_NAME
         with:
-          args: kubectl rollout restart deployment/usage-service -n verisdemo
+          args: kubectl rollout status deployment/usage-service -n verisdemo
