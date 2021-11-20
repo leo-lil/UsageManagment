@@ -2,33 +2,25 @@ on: push
 name: deploy
 jobs:
   deploy:
-    name: deploy to cluster
+    name: Deploy to cluster
     runs-on: ubuntu-latest
     steps:
-
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: cn-north-1
-    
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+    - uses: actions/checkout@master
     - name: deploy to cluster
-      uses: kodermax/kubectl-aws-eks@master
+      uses: qazz92/kubectl@1.0.3
       env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA_STAGING }}
-        ECR_REGISTRY: 906295378353.dkr.ecr.cn-north-1.amazonaws.com.cn/verisdemo
-        ECR_REPOSITORY: usage-service
-        IMAGE_TAG: latest
+        kube_confg_data: ${{ secrets.KUBE_CONFIG_DATA }}
+        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws_region: cn-north-1
       with:
-        args: set image deployment/$ECR_REPOSITORY $ECR_REPOSITORY=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        
+        args: set image --record deployment/usage-service container=906295378353.dkr.ecr.cn-north-1.amazonaws.com.cn/verisdemo/usage-service:latest
     - name: verify deployment
-      uses: kodermax/kubectl-aws-eks@master
+      uses: qazz92/kubectl@1.0.3
       env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        kube_confg_data: ${{ secrets.KUBE_CONFIG_DATA }}
+        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws_region: cn-north-1
       with:
-        args: rollout status deployment/usage-service
+        args: '"rollout status deployment/usage-service"'
