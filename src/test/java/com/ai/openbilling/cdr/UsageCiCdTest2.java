@@ -18,6 +18,7 @@ public class UsageCiCdTest2 extends AbstractTestNGSpringContextTests {
 		String fields="";
 		Integer offset=1;
 		Integer limit=10;
+		
 		UsageManagmentController.listUsage(fields, offset, limit);
     }
 }
