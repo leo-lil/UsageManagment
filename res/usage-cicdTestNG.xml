@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="usage-cicd" parallel="true">
+    <test name="UsageCiCdTest" preserver-order="true">
+        <classes>
+            <class name="com.ai.openbilling.cdr.UsageCiCdTest"></class>
+            <class name="com.ai.openbilling.cdr.UsageCiCdTest2"></class>
+        </classes>
+        <listeners>
+            <listener class-name="org.uncommons.reportng.HTMLReporter" />
+            <listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+        </listeners>
+    </test>
+</suite>

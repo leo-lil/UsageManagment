@@ -29,4 +29,11 @@ public class UsageManagmentController {
 			@RequestParam(value = "limit", required = false) Integer limit){
 		 return new ResponseEntity<List<Usage>>(HttpStatus.OK);
 	}
+	
+	@ApiOperation(value="Query usage")
+	@RequestMapping(value = "/queryAll1",method= {RequestMethod.GET})
+	public ResponseEntity<List<Usage>> listUsage1(@RequestParam(value = "fields", required = false) String fields,@RequestParam(value = "offset", required = false) Integer offset,
+			@RequestParam(value = "limit", required = false) Integer limit){
+		 return new ResponseEntity<List<Usage>>(HttpStatus.OK);
+	}
 }
