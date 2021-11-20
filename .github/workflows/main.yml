@@ -1,16 +1,16 @@
 on: push
 name: deploy
 jobs:
-  deploy:
-    name: Deploy to cluster
-    runs-on: ubuntu-latest
+  jobName:
+    name: Update deploy
+    runs-on: ubuntu-latest 
     steps:
-    - name: deployment
-      uses: qazz92/kubectl@1.0.3
-      env:
-        kube_confg_data: ${{ secrets.KUBE_CONFIG_DATA_STAGING }}
-        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws_region: cn-north-1
-      with:
-        args: '"rollout restart deployment/usage-service -n verisdemo"'
+      # --- #
+      - name: Build and push CONTAINER_NAME
+        uses: ianbelcher/eks-kubectl-action@master
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: cn-north-1
+          cluster_name: verislitecloud
+          args: rollout restart deployment/usage-service -n verisdemo
