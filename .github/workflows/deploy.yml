@@ -1,17 +1,25 @@
-on: push
-name: deploy
+name: Deploy
+
+on:
+  push:
+    branches:
+      - develop
+
+env:
+  AWS_REGION: cn-north-1
+  EKS_CLUSTER_NAME: verislitecloud
+
 jobs:
-  jobName:
-    name: Update deploy
-    runs-on: ubuntu-latest 
+  deploy:
+    runs-on: ubuntu-latest
     steps:
-      # --- #
-      - name: Build and push CONTAINER_NAME
-        uses: ianbelcher/eks-kubectl-action@master
-        with:
+      - name: Deploy
+        uses: cancue/eks-action@v0.0.2
+        env:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_region: cn-north-1
-          cluster_name: verislitecloud
-          args: rollout restart deployment/usage-service -n verisdemo
-      # --- #
+          aws_region: $AWS_REGION
+          cluster_name: $EKS_CLUSTER_NAME
+        with:
+          args: |
+            kubectl rollout restart deployment/usage-service -n verisdemo
