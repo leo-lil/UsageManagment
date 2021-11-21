@@ -19,7 +19,7 @@ jobs:
       - name: Build with Maven
         run: mvn clean test
       - name: Test Report
-        uses: dorny/test-reporter@v1.5.0
+        uses: dorny/test-reporter@v1
         if: success() || failure()    
         with:
           name: JEST Tests    
