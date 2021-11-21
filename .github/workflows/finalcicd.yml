@@ -15,14 +15,6 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: maven
-    - name: Build with Maven
-      run: mvn -B package -Dmaven.test.skip=true
-    - name: Build with Docker
-      run: docker build -t 906295378353.dkr.ecr.cn-north-1.amazonaws.com.cn/litedemo/usage-managment:1.0.0 .
-    - name: Push with Docker
-      run: |
-        docker login -u AWS -p ${{ secrets.ECR_PASSWORD }} 906295378353.dkr.ecr.cn-north-1.amazonaws.com.cn
-        docker push 906295378353.dkr.ecr.cn-north-1.amazonaws.com.cn/litedemo/usage-managment:1.0.0   
   junit-test:
     needs: gitpull
     name: Build & Test
@@ -64,8 +56,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }} 
   builds:
     needs: |
-           testng
-           junit-test
+      testng
+      junit-test
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -107,3 +99,11 @@ jobs:
           aws_region: cn-north-1
           cluster_name: verislitecloud
           args: rollout restart deployment/usage-service -n verisdemo
+      - name: Build with Maven
+        run: mvn -B package -Dmaven.test.skip=true
+      - name: Build with Docker
+        run: docker build -t 906295378353.dkr.ecr.cn-north-1.amazonaws.com.cn/litedemo/usage-managment:1.0.0 .
+      - name: Push with Docker
+        run: |
+          docker login -u AWS -p ${{ secrets.ECR_PASSWORD }} 906295378353.dkr.ecr.cn-north-1.amazonaws.com.cn
+          docker push 906295378353.dkr.ecr.cn-north-1.amazonaws.com.cn/litedemo/usage-managment:1.0.0   
