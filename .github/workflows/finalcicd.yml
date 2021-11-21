@@ -23,6 +23,27 @@ jobs:
       run: |
         docker login -u AWS -p ${{ secrets.ECR_PASSWORD }} 906295378353.dkr.ecr.cn-north-1.amazonaws.com.cn
         docker push 906295378353.dkr.ecr.cn-north-1.amazonaws.com.cn/litedemo/usage-managment:1.0.0   
+  junit-test:
+    needs: gitpull
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2     
+      - name: Set up JDK 8
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+          cache: maven
+      - name: Build with Maven
+        run: mvn  test
+      - name: Test Report
+        uses: dorny/test-reporter@v1.5.0
+        if: success() || failure()    
+        with:
+          name: JEST Tests    
+          path: target/surefire-reports/TEST-*.xml 
+          reporter: java-junit     
   testng:
     needs: gitpull
     runs-on: ubuntu-latest
