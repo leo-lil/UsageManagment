@@ -57,14 +57,14 @@
             <artifactId>joda-time</artifactId>
         </dependency>
         <!-- testng -->
-		<dependency>
+		<!-- <dependency>
 		    <groupId>org.testng</groupId>
 		    <artifactId>testng</artifactId>        
 		    <version>7.0.0</version>
 		    <scope>test</scope>
-		</dependency>
+		</dependency> -->
 		<!-- 依赖reportNg 关联testNg-->
-	    <dependency>
+	    <!-- <dependency>
 	        <groupId>org.uncommons</groupId>
 	        <artifactId>reportng</artifactId>
 	        <version>1.1.4</version>
@@ -75,15 +75,15 @@
 	                <artifactId>testng</artifactId>
 	            </exclusion>
 	        </exclusions>
-	    </dependency>
+	    </dependency> -->
 	 
 	    <!-- 依赖Guice -->
-	    <dependency>
+	    <!-- <dependency>
 	        <groupId>com.google.inject</groupId>
 	        <artifactId>guice</artifactId>
 	        <version>3.0</version>
 	        <scope>test</scope>
-	    </dependency>	
+	    </dependency>	 -->
 	    <dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
@@ -98,6 +98,11 @@
 	      <artifactId>hutool-all</artifactId>
 	      <version>5.1.0</version>
 	    </dependency>
+	   <dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -107,7 +112,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<!-- 添加插件 关联testNg.xml -->
-            <plugin>
+<!--             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.5</version> 
@@ -117,9 +122,9 @@
                         <file>res/usage-cicdTestNG.xml</file>
                     </suiteXmlFiles>
                 </configuration>
-            </plugin>
+            </plugin> -->
             <!-- 添加插件,添加ReportNg的监听器，修改最后的TestNg的报告 -->
-	       <plugin>
+<!-- 	       <plugin>
 	            <groupId>org.apache.maven.plugins</groupId>
 	            <artifactId>maven-surefire-plugin</artifactId>
 	            <version>2.5</version> 
@@ -138,7 +143,12 @@
 	                <forkMode>always</forkMode>
 	            </configuration>
 	        </plugin>
-            
+             -->
+             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.5</version> 
+            </plugin>
 		</plugins>
 	</build>
 </project>
