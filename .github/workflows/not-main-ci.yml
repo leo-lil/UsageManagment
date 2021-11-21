@@ -1,4 +1,4 @@
-name: UM-CICD-FINAL
+name: No main ci
 on:
   push:
     branches: 
