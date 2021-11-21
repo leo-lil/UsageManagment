@@ -24,6 +24,7 @@ jobs:
         docker login -u AWS -p ${{ secrets.ECR_PASSWORD }} 906295378353.dkr.ecr.cn-north-1.amazonaws.com.cn
         docker push 906295378353.dkr.ecr.cn-north-1.amazonaws.com.cn/litedemo/usage-managment:1.0.0   
   test:
+    needs: gitpull
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -41,6 +42,7 @@ jobs:
       with:
           github_token: ${{ secrets.GITHUB_TOKEN }}  
   build:
+    needs: gitpull
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -67,8 +69,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=VerisLite_UsageManagment
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=VerisLite_UsageManagment        
   Deploy:
+    needs: build
     name: Update deploy
     runs-on: ubuntu-latest 
     steps:
