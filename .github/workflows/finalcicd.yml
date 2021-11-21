@@ -42,7 +42,7 @@ jobs:
       with:
           github_token: ${{ secrets.GITHUB_TOKEN }}  
   builds:
-    needs: test
+    needs: testng
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -71,7 +71,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=VerisLite_UsageManagment        
   Deploys:
-    needs: build
+    needs: builds
     name: Update deploy
     runs-on: ubuntu-latest 
     steps:
