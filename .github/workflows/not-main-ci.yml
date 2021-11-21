@@ -3,7 +3,6 @@ on:
   push:
     branches: 
       - '*'
-      - '!main'
 jobs:
   gitpull:
     runs-on: ubuntu-latest
