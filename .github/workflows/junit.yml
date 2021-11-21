@@ -23,15 +23,20 @@ jobs:
       run: |
         docker login -u AWS -p ${{ secrets.ECR_PASSWORD }} 906295378353.dkr.ecr.cn-north-1.amazonaws.com.cn
         docker push 906295378353.dkr.ecr.cn-north-1.amazonaws.com.cn/litedemo/usage-managment:1.0.0   
+  
   junit-test:
     needs: gitpull
+    name: Build & Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2         
-      - run: npm ci                       
-      - run: npm test                     
-      - uses: actions/upload-artifact@v2 
-        if: success() || failure()        
+      - uses: actions/checkout@v2     
+      - run: npm ci                   
+      - run: npm test                 
+
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    
         with:
-          name: test-results
-          path: jest-junit.xml
+          name: JEST Tests            
+          path: reports/jest-*.xml    
+          reporter: jest-junit        
