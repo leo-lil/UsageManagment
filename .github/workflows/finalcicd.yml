@@ -2,8 +2,6 @@ name: UM-CICD-FINAL
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 jobs:
   gitpull:
     runs-on: ubuntu-latest
