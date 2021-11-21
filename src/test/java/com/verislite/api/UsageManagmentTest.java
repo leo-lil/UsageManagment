@@ -29,7 +29,7 @@ public class UsageManagmentTest  {
 		Integer offset=1;
 		Integer limit=10;
 		
-		System.out.println("JC-7-cdr-query-gui");
+		System.out.println("add log");
 		System.out.println("testUsageQry2");
     }
 }
