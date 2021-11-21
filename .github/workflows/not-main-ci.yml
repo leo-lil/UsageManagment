@@ -2,7 +2,7 @@ name: No main ci
 on:
   push:
     branches: 
-    - '*'
+    - '**'
 jobs:
   gitpull:
     runs-on: ubuntu-latest
