@@ -28,7 +28,7 @@ public class UsageCharacteristic   {
 
   private List<CharacteristicRelationship> characteristicRelationship = new ArrayList<CharacteristicRelationship>();
 
-  private Any value = null;
+  private String value = null;
 
   private String baseType = null;
 
@@ -113,7 +113,7 @@ public class UsageCharacteristic   {
     this.characteristicRelationship = characteristicRelationship;
   }
 
-  public UsageCharacteristic value(Any value) {
+  public UsageCharacteristic value(String value) {
     this.value = value;
     return this;
   }
@@ -123,11 +123,11 @@ public class UsageCharacteristic   {
    * @return value
   **/
   @ApiModelProperty(required = true, value = "The value of the characteristic")
-  public Any getValue() {
+  public String getValue() {
     return value;
   }
 
-  public void setValue(Any value) {
+  public void setValue(String value) {
     this.value = value;
   }
 

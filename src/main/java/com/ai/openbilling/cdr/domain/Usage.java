@@ -1,6 +1,7 @@
 package com.ai.openbilling.cdr.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,7 +29,7 @@ public class Usage   {
 
   private String description = null;
 
-  private DateTime usageDate = null;
+  private Date usageDate = null;
 
   private String usageType = null;
 
@@ -102,7 +103,7 @@ public class Usage   {
     this.description = description;
   }
 
-  public Usage usageDate(DateTime usageDate) {
+  public Usage usageDate(Date usageDate) {
     this.usageDate = usageDate;
     return this;
   }
@@ -112,11 +113,11 @@ public class Usage   {
    * @return usageDate
   **/
   @ApiModelProperty(example = "2020-09-21T09:13:16-07:00", value = "Date of usage")
-  public DateTime getUsageDate() {
+  public Date getUsageDate() {
     return usageDate;
   }
 
-  public void setUsageDate(DateTime usageDate) {
+  public void setUsageDate(Date usageDate) {
     this.usageDate = usageDate;
   }
 

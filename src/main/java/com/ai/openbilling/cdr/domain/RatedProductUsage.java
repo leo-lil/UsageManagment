@@ -1,5 +1,6 @@
 package com.ai.openbilling.cdr.domain;
 
+import java.util.Date;
 import java.util.Objects;
 
 import org.joda.time.DateTime;
@@ -28,7 +29,7 @@ public class RatedProductUsage   {
 
   private String ratingAmountType = null;
 
-  private DateTime ratingDate = null;
+  private Date ratingDate = null;
 
   private Float taxRate = null;
 
@@ -120,7 +121,7 @@ public class RatedProductUsage   {
     this.ratingAmountType = ratingAmountType;
   }
 
-  public RatedProductUsage ratingDate(DateTime ratingDate) {
+  public RatedProductUsage ratingDate(Date ratingDate) {
     this.ratingDate = ratingDate;
     return this;
   }
@@ -130,11 +131,11 @@ public class RatedProductUsage   {
    * @return ratingDate
   **/
   @ApiModelProperty(value = "Date of usage rating")
-  public DateTime getRatingDate() {
+  public Date getRatingDate() {
     return ratingDate;
   }
 
-  public void setRatingDate(DateTime ratingDate) {
+  public void setRatingDate(Date ratingDate) {
     this.ratingDate = ratingDate;
   }
 
