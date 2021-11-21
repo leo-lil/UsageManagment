@@ -1,7 +1,8 @@
 name: No main ci
 on:
   push:
-    branches: [ JC-7-cdr-query-gui ]
+    branches: 
+    - '*'
 jobs:
   gitpull:
     runs-on: ubuntu-latest
