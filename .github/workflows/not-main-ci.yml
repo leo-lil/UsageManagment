@@ -1,7 +1,7 @@
 name: No main ci
 on:
   push:
-    branches: 
+    branches-ignore: 
     - '**'
 jobs:
   gitpull:
