@@ -1,8 +1,8 @@
 name: No main ci
 on:
   push:
-    branches: 
-    - '**'
+    branches-ignore:
+      - 'main'
 jobs:
   gitpull:
     runs-on: ubuntu-latest
