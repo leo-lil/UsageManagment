@@ -1,8 +1,6 @@
 name: No main ci
 on:
-  push:
-    branches: 
-    - '**'
+  workflow_dispatch:
 jobs:
   gitpull:
     runs-on: ubuntu-latest
