@@ -11,3 +11,4 @@ COPY target/usage-cicd-$APP_VERSION.jar /app/app.jar
 ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app/app.jar"]
 
 EXPOSE 8080
+
